@@ -1,0 +1,18 @@
+---
+
+- hosts: all
+  sudo: yes
+  roles:
+    - franklinkim.vsftpd
+  vars:
+    vsftpd_service_enabled: yes
+    vsftpd_service_state: started
+    vsftpd_config:
+       local_enable: 'YES'
+       write_enable: 'YES'
+       pasv_enable: 'YES'
+       pasv_min_port: 10090
+       pasv_max_port: 10100
+       local_umask: '022'
+  tasks:
+    - user: name=ftpuser comment="password=ftpuser" shell=/bin/bash createhome=yes password="$6$u/dyvjOjdtugh$C32ggiu18zXggWS0ZMnfleEf9MzzKc7VaWx.JiC.J7cyEnlWzHxjtMMPuWmkoc9MloIs/NrrAT9F9jC.8xBvL1"
